@@ -19,8 +19,8 @@
   "scripts": {
     "start": "webpack serve",
     "test":"jest",
-    "build:dev":"webpack",
-    "build:prod":"webpack -p --env production"
+    "build":"webpack",
+    
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
