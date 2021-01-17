@@ -2,7 +2,7 @@ const path=require("path");
 //entry:"../src/index.js",
 module.exports={
   mode: 'production',
-       entry: path.resolve(__dirname, "src") +"/index.js",
+       entry: "./src/index.js",
     output:{
         path:path.join(__dirname,'public'),
         filename:"bundle.js"
