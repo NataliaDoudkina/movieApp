@@ -2,8 +2,9 @@ const path=require("path");
 
 
 
-module.exports=(env)=>{
-return{
+module.exports={
+
+    mode: 'production',
     entry:"./src/index.js",
     output:{
         path:path.join(__dirname,'public'),
@@ -46,4 +47,3 @@ return{
         contentBase: path.join(__dirname,'public')
     }
   }
-}
