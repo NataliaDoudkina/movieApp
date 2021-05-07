@@ -8,14 +8,14 @@ const axios = require('axios');
 import './search.styles.scss'
 
 const Search=()=>{
-  console.log('Search rendered!')
+  
   const [movie, setMovie]=useState('')
   const [movies,setMovies]=useState([])
   const [firstSearch, setSearch]=useState(true)
   const [countPage, setCountPage]=useState(1)
   const [pages, setPages]=useState(0)
   const [disabled, setDisabled]=useState(false)
-  const [clicked, setClicked]=useState(0)
+  
 
 
   const fetchMovies=async (searchInput,countPage)=>{
@@ -35,7 +35,7 @@ const Search=()=>{
       return []
     }
     
-      localStorage.setItem(`${countPage}`, JSON.stringify(response.data.Search))
+     
       setPages(Math.ceil(response.data.totalResults/10))
       return response.data.Search
  
@@ -45,12 +45,7 @@ const Search=()=>{
 
       event.preventDefault()
 
-      fetchMovies(movie, countPage)
-        .then(result=>          
-          {            
-            setMovies([...result])               
-              
-      })}      
+     }      
 
 
   const handleNextClick=(e)=>{
@@ -67,17 +62,8 @@ const Search=()=>{
         setSearch(true)
       }setMovies([...result])
       })
-  }, [clicked])
+  }, [countPage, movie])
 
-/*const handleNextClick=(e)=>{
-
-  e.preventDefault()  
-  fetchMovies(movie, countPage+1)  
-  .then(result=>
-    {setMovies([...result])
-    })
-    setCountPage(countPage=>countPage+=1)
-}*/
 
 useEffect(()=>{
   if(countPage===pages){
@@ -87,11 +73,8 @@ useEffect(()=>{
   }
 },[countPage])
 
-const handlePrevClick=()=>{
-  const loadedMovies= JSON.parse(localStorage.getItem(countPage-1))
+const handlePrevClick=()=>{ 
   setCountPage(countPage=>countPage-1)
-  setMovies([...loadedMovies])
-
 }
 
   return (
